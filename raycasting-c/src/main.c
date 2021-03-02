@@ -101,17 +101,16 @@ void update() {
     // Store the milliseconds of the current frame to be used in the future
     ticksLastFrame = SDL_GetTicks();
 
-    playerX += 50 * deltaTime;
-    playerY += 50 * deltaTime;
+    // playerX += 50 * deltaTime;
+    // playerY += 50 * deltaTime;
 }
 
 void render() {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
 
-    SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
-    SDL_Rect rect = {playerX, playerY, 20, 20};
-    SDL_RenderFillRect(renderer, &rect);
+	// TODO:
+	// Render game objects here
 
     SDL_RenderPresent(renderer);
 }
