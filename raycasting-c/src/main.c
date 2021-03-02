@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <SDL2/SDL.h>
+#include </Users/yhakamay/homebrew/include/SDL2/SDL.h>
 #include "constants.h"
 
 SDL_Window* window = NULL;
