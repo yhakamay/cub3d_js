@@ -2,12 +2,37 @@
 #include </Users/yhakamay/homebrew/include/SDL2/SDL.h>
 #include "constants.h"
 
+const int map[MAP_NUM_ROWS][MAP_NUM_COLS] = {
+	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+	{1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+	{1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+	{1, 0, 0, 1, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 1},
+	{1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1},
+	{1, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1},
+	{1, 0, 3, 1, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 1},
+	{1, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 3, 1},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+};
+
+struct Player {
+    float   x;
+    float   y;
+    float   width;
+    float   height;
+    int     turnDirection; // -1 for left, +1 for right
+    int     walkDirection;
+    float   rotationAngle;
+    float   walkSpeed;
+    float   turnSpeed;
+} player;
+
+
 SDL_Window* window = NULL;
 SDL_Renderer* renderer = NULL;
 int isGameRunning = FALSE;
 int ticksLastFrame;
-
-int playerX, playerY;
 
 int initializeWindow() {
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
@@ -43,8 +68,7 @@ void destroyWindow() {
 }
 
 void setup() {
-    playerX = 0;
-    playerY = 0;
+    player.x = 0;
 }
 
 void processInput() {
